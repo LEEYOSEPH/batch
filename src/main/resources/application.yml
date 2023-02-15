@@ -13,8 +13,13 @@ spring:
     database: H2
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
+        hbm2ddl:
+          import_files: classpath:db/data.sql # DB 파일 명시적으로 선택
+          import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor # 멀티 라인 입력 가능하도록
+          connection:
+            charSet: UTF-8 # 인코딩 설정
         format_sql: true
 

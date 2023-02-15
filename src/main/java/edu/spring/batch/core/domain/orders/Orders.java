@@ -1,17 +1,19 @@
 package edu.spring.batch.core.domain.orders;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
-@EnableBatchProcessing
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @ToString
+@Entity
+@Table(name = "ORDERS")
 public class Orders {
 
     @Id
