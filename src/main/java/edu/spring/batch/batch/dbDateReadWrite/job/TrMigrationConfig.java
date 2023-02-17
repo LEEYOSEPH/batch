@@ -57,12 +57,6 @@ public class TrMigrationConfig {
         return stepBuilderFactory.get("trMigrationStep")
                 .<Orders, Accounts>chunk(5) // 5개의 데이터 단위로 처리
                 .reader(trOrderReader) //iteamReadr 작성
-//                .writer(new ItemWriter() {
-//                    @Override
-//                    public void write(List items) throws Exception {
-//                        items.forEach(System.out::println);
-//                    }
-//                })
                 .processor(trOrderProcessor) // 처리
                 .writer(trOrdersWriter)
                 .build();
@@ -108,7 +102,6 @@ public class TrMigrationConfig {
                 .name("trOrderReader")
                 .repository(ordersRepository)
                 .methodName("findAll")
-                .pageSize(5)
                 .pageSize(5)
                 .arguments(Arrays.asList())
                 .sorts(Collections.singletonMap("id", Sort.Direction.ASC))

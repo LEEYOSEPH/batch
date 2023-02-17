@@ -1,11 +1,18 @@
+# default
 spring:
+  profiles:
+    active: local
+---
+spring:
+  config:
+    activate:
+      on-profile: local
   batch:
     job:
-      ## job ??? job??? ????? ??? ?? ??
       names: ${job.name.NONE}
   datasource:
     hikari:
-      jdbc-url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+      jdbc-url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false
       username: sa
       password:
       driver-class-name: org.h2.Driver
@@ -13,7 +20,7 @@ spring:
     database: H2
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     properties:
       hibernate:
         hbm2ddl:
@@ -23,3 +30,10 @@ spring:
             charSet: UTF-8 # 인코딩 설정
         format_sql: true
 
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  jpa:
+    database: h2
